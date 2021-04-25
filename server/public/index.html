@@ -10,19 +10,26 @@
         <link rel="stylesheet" href="styles/style.css">
         <script src="vendors/jquery-3.6.0.js"></script>
         <script src="client.js"></script>
-        
+       
     </head>
     <body>
+        <div id="left"></div>
+        <div id="right"></div>
+        <div id="top"></div>
+        <div id="bottom"></div>
         <main>
             <h1>To Do List:</h1>
-            <section id="taskInputs">
-                <input type="text" id="nameIn" placeholder="Task Name">
-                <input type="text" id="description" placeholder="Description">
-                <button id="addTask">Add Task</button>
-            </section>
-            <section id="tasksDisplay">
+            <container id="container">
 
-            </section>
+                <section id="taskInputs">
+                    <input type="text" id="nameIn" placeholder="Task Name">
+                    <input type="text" id="description" placeholder="Description">
+                    <button id="addTask">Add Task</button>
+                </section>
+                <section id="tasksDisplay">
+
+                </section>
+            </container>
         </main>
     </body>
 </html>

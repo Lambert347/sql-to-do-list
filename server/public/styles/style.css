@@ -1,3 +1,68 @@
 .changeToComplete{
     background-color: cadetblue;
 }
+body {
+    margin: 0;
+    background-color: #D1CAA1;
+    padding: 3rem;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+   
+    
+}
+/* main{
+    background-color: #D1CAA1;
+    margin: 0;
+    padding: 0;
+    border: 35px solid #32213A;
+} */
+
+#taskInputs {
+    margin-bottom: 2rem;
+}
+
+.taskCard {
+    display: inline-block;
+    width: 300px;
+    height: 150px;
+    background-color: #383B53;
+    color: #D4D6B9;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 1px #DCDCDC;
+    border-radius: 10px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+.descriptionStyle {
+    margin-bottom: 1rem;
+    font-style: oblique;
+}
+
+#top, #bottom, #left, #right {
+    background: #32213A;
+    position: fixed;
+}
+#left, #right {
+    top: 0;
+    bottom: 0;
+    width: 30px;
+}
+#left {
+    left: 0;
+}
+#right {
+    right: 0;
+}
+#top, #bottom {
+    left: 0;
+    right: 0;
+    height: 30px;
+}
+#top {
+    top: 0;
+}
+#bottom {
+    bottom: 0;
+}

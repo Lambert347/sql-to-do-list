@@ -54,8 +54,8 @@ function renderTasks(tasks){
     for(let i = 0; i < tasks.length; i++) {
         $('#tasksDisplay').append(`
             <div class="taskCard">
-                <p>${tasks[i].name}</p>
-                <li>${tasks[i].description}</li>
+                <p class="nameStyle">${tasks[i].name}</p>
+                <li class="descriptionStyle">${tasks[i].description}</li>
                 <button class="isComplete" data-id="${tasks[i].id}">Complete task</button>
                 <button class="deleteTask" data-id="${tasks[i].id}">Delete task</button>
             </div>
