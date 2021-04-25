@@ -46,3 +46,18 @@ router.put('/isComplete/:id', (req, res) => {
         res.sendStatus(500);    
     })
 })
+
+router.delete('/:id', (req, res) => {
+    let reqId = req.params.id;
+    console.log('Delete request for task id:', reqId);
+    let sqlText = 'DELETE FROM "tasks" WHERE "id"=$1;';
+    pool.query(sqlText, [reqId])
+        .then((result) => {
+            console.log('Task deleted');
+            res.sendStatus(200);
+        })
+        .catch((error) => {
+            console.log(`Error with making database delete query ${sqlText}`, error);
+            res.sendStatus(500);
+        })
+})
