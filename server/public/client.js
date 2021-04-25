@@ -3,7 +3,10 @@ $(document).ready(readyOn);
 
 function readyOn(){
     console.log('JQ');
-    //render/get tasks
+    getTasks();
+    $('#addTask').on('click', addTask);
+    $('#tasksDisplay').on('click', '.isComplete', completeHandler);
+    $('#tasksDisplay').on('click', '.deleteTask', deleteHandler);
     
     //clickhandlers
 }
@@ -57,7 +60,7 @@ function renderTasks(tasks){
                 <button class="isComplete" data-id="${tasks[i].id}">Complete task</button>
             </td>
             <td>
-                <button class="deleteBook" data-id="${tasks[i].id}">Delete task</button>
+                <button class="deleteTask" data-id="${tasks[i].id}">Delete task</button>
             </td>
         </tr>
     `);
