@@ -33,6 +33,17 @@ function addTask(){
 function renderTasks(tasks){
     $('#tasksDisplay').empty();
     for(let i = 0; i < tasks.length; i++) {
-        
+        $('#tasksDisplay').append(`
+        <tr>
+            <td>${tasks[i].name}<td>
+            <td>${tasks[i].description}<td>
+            <td>
+                <button class="isComplete" data-id="${tasks[i].id}">Complete task</button>
+            </td>
+            <td>
+                <button class="deleteBook" data-id="${tasks[i].id}">Delete task</button>
+            </td>
+        </tr>
+    `);
     }
 }
