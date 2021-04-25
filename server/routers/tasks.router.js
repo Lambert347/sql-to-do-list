@@ -1,5 +1,4 @@
 const express = require('express');
-const { Console } = require('node:console');
 const router = express.Router();
 const pool = require ('../modules/pool');
 
@@ -28,3 +27,22 @@ router.post('/', (req, res) => {
         });
 });
 
+router.put('/isComplete/:id', (req, res) => {
+    let taskId = req.params.id;
+    let boolean = req.body.boolean;
+    let sqlText = '';
+    if (boolean === 'true') {
+        sqlText = `UPDATE "tasks" SET "isComplete"=true WHERE "id"=$1;`;
+    }
+    else {
+        res.sendStatus(500);
+        return;
+    }
+    pool.query(sqlText, [taskId]).then((resDB) => {
+        res.sendStatus(200);
+    })
+    .catch((error) => {
+        console.log('Error with put request', error);
+        res.sendStatus(500);    
+    })
+})
