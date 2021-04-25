@@ -8,6 +8,22 @@ function readyOn(){
     //clickhandlers
 }
 
+//get tasks
+function getTasks(){
+    $.ajax({
+        type: 'GET',
+        url: '/tasks',
+    })
+    .then(function(response) {
+        console.log(response);
+        renderTasks(response);
+    })
+    .catch(function(error){
+        console.log('Error with getting tasks', error);
+        alert('Error with getting tasks from server, try again later.');
+    })
+}
+
 function addTask(){
     console.log('Adding task');
     let newTask = {
