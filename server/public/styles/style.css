@@ -1,5 +1,11 @@
 .changeToComplete{
-    background-color: cadetblue;
+    background-color: lightgray !important;
+    color: darkgray !important;
+    opacity: 0.75 !important;
+}
+
+.buttonChange {
+    opacity: 0.5;
 }
 body {
     margin: 0;
@@ -9,15 +15,21 @@ body {
    
     
 }
-/* main{
-    background-color: #D1CAA1;
-    margin: 0;
-    padding: 0;
-    border: 35px solid #32213A;
-} */
+#head {
+    text-align: center;
+    margin-bottom: 2rem;
+    background-color: #EE6C4D;
+    margin-right: 40%;
+    margin-left: 40%;
+    padding: 10px;
+    border: 1px #DCDCDC;
+    border-radius: 10px;
+    box-shadow: 10px 5px 5px #66717E;
+}
 
 #taskInputs {
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
+    text-align: center;
 }
 
 .taskCard {
@@ -26,22 +38,29 @@ body {
     height: 150px;
     background-color: #383B53;
     color: #D4D6B9;
-    margin-right: 1rem;
-    margin-bottom: 1rem;
+    margin-right: 3rem;
+    margin-bottom: 3rem;
     padding: 1rem;
     border: 1px #DCDCDC;
     border-radius: 10px;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
+    box-shadow: 10px 5px 5px #66717E;
 }
 
+#tasksDisplay {
+    display: flex;
+    flex-wrap: wrap;
+}
 
 .descriptionStyle {
     margin-bottom: 1rem;
     font-style: oblique;
 }
 
+
+
 #top, #bottom, #left, #right {
-    background: #32213A;
+    background-color: #66717E;
     position: fixed;
 }
 #left, #right {
@@ -59,6 +78,7 @@ body {
     left: 0;
     right: 0;
     height: 30px;
+    
 }
 #top {
     top: 0;
