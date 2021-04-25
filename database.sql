@@ -1,7 +1,7 @@
 CREATE TABLE "tasks" (
 	"id" SERIAL PRIMARY KEY,
 	"name" VARCHAR (250) NOT NULL,
-	"description" VARCHAR (300) NOT NULL,
+	"description" VARCHAR (250) NOT NULL,
 	"isComplete" BOOLEAN DEFAULT FALSE
 );
 

@@ -38,12 +38,12 @@ function addTask(){
         url: '/tasks',
         data: newTask,
     })
-        .then(function(response) {
+        .then(response => {
             console.log('Response from server.', response);
             //TODO: add this function below
-            renderTasks(response);
+            getTasks();
         })
-        .catch(function(error) {
+        .catch(error => {
             console.log('Error with post', error);
             alert('Unable to add task at this time, try again later.');
         });
@@ -53,23 +53,24 @@ function renderTasks(tasks){
     $('#tasksDisplay').empty();
     for(let i = 0; i < tasks.length; i++) {
         $('#tasksDisplay').append(`
-        <tr>
-            <td>${tasks[i].name}<td>
-            <td>${tasks[i].description}<td>
-            <td>
+            <div class="taskCard">
+                <p>${tasks[i].name}</p>
+                <li>${tasks[i].description}</li>
                 <button class="isComplete" data-id="${tasks[i].id}">Complete task</button>
-            </td>
-            <td>
                 <button class="deleteTask" data-id="${tasks[i].id}">Delete task</button>
-            </td>
-        </tr>
-    `);
+            </div>
+        `);
+        if (tasks[i].isComplete === true){
+            $('.taskCard').addClass('changeToComplete');
+        }
     }
 }
 
 function completeHandler(){
     console.log('Completing task');
+    $(this).parent().addClass('changeToComplete');
     completeTask($(this).data("id"), "true");
+    
 }
 
 function completeTask(taskId, isComplete){
