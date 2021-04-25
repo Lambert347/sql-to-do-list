@@ -84,3 +84,21 @@ function completeTask(taskId, isComplete){
             alert('Error with deleting task', error);
     });
 }
+
+function deleteHandler(){
+    deleteTask($(this).data("id"));
+}
+
+function deleteTask(taskId){
+    $.ajax({
+        method: 'DELETE',
+        url: `/tasks/${taskId}`,
+    })
+    .then(function(response){
+        getTasks();
+    })
+    .catch(function(error){
+        console.log('Error with deleting task', error);
+        alert('Error with deleting task, try again later.')
+    })
+}
