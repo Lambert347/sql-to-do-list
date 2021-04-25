@@ -47,3 +47,24 @@ function renderTasks(tasks){
     `);
     }
 }
+
+function completeHandler(){
+    console.log('Completing task');
+    completeTask($(this).data("id"), "true");
+}
+
+function completeTask(taskId, isComplete){
+    $.ajax({
+        method: 'PUT',
+        url: `/tasks/isComplete/${taskId}`,
+        data: {
+            boolean: isComplete,
+        }
+    })
+        .then (function(response) {
+            getTasks();
+        })
+        .catch(function (error) {
+            alert('Error with deleting task', error);
+    });
+}
