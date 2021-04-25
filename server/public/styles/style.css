@@ -30,6 +30,12 @@ body {
 #taskInputs {
     margin-bottom: 4rem;
     text-align: center;
+    
+}
+
+input[type=text] {
+    background-color: #383B53;
+    color: #D4D6B9;
 }
 
 .taskCard {
