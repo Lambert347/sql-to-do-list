@@ -3,7 +3,7 @@ const router = express.Router();
 const pool = require ('../modules/pool');
 
 router.get('/', (req, res) => {
-    let queryText = 'SELECT * FROM "tasks";',;
+    let queryText = 'SELECT * FROM "tasks";';
     pool.query(queryText).then(result => {
         res.send(result.rows);
     })
@@ -17,7 +17,7 @@ router.post('/', (req, res) => {
     console.log('Adding new task to the server', newTask);
     let queryText = `INSERT INTO "tasks" ("name", "description")
                     VALUES ($1, $2);`;
-    pool.query(queryTExt, [newTask.name, newTask.description])
+    pool.query(queryText, [newTask.name, newTask.description])
         .then(result => {
             res.sendStatus(201);
         })
@@ -61,3 +61,4 @@ router.delete('/:id', (req, res) => {
             res.sendStatus(500);
         })
 })
+module.exports = router;

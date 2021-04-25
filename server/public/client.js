@@ -41,7 +41,7 @@ function addTask(){
         .then(function(response) {
             console.log('Response from server.', response);
             //TODO: add this function below
-            renderTasks();
+            renderTasks(response);
         })
         .catch(function(error) {
             console.log('Error with post', error);
