@@ -1,8 +1,12 @@
 const express = require('express');
 const router = express.Router();
+//make sure the router connects to the pool.js file which connects to the database
 const pool = require ('../modules/pool');
 
+//function to get the information from the database at request of the client.
+//The information is ordered by id to make sure the display id consistent. 
 router.get('/', (req, res) => {
+    //queries the pool and then sends back the rows from the table to the client.
     let queryText = 'SELECT * FROM "tasks" ORDER BY "id";';
     pool.query(queryText).then(result => {
         res.send(result.rows);
