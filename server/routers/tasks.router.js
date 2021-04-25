@@ -25,5 +25,6 @@ router.post('/', (req, res) => {
         .catch(error => {
             console.log('Error adding new task', error);
             res.sendStatus(500);
-        })
-})
+        });
+});
+
