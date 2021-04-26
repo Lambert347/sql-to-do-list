@@ -1,58 +1,71 @@
 console.log('JAVAJAVAJAVA');
 $(document).ready(readyOn);
-
+//function to ready the dom for manipulation
 function readyOn(){
     console.log('JQ');
+    //get the tasks from the server when the DOM is loaded
     getTasks();
+    //click handlers for when the respective buttons are clicked
     $('#addTask').on('click', addTask);
     $('#tasksDisplay').on('click', '.isComplete', completeHandler);
     $('#tasksDisplay').on('click', '.deleteTask', deleteHandler);
-    
-    //clickhandlers
 }
 
-//get tasks
+//function to get tasks from the server
 function getTasks(){
+    //makes request to server to get the data
     $.ajax({
         type: 'GET',
         url: '/tasks',
     })
+    //when made successfully, calls the renderTasks function with the response (data from the server)
     .then(function(response) {
         console.log(response);
         renderTasks(response);
     })
+    //Error if one occurs, alerts user
     .catch(function(error){
         console.log('Error with getting tasks', error);
         alert('Error with getting tasks from server, try again later.');
     })
 }
 
+//function to add task
 function addTask(){
     console.log('Adding task');
+    //creates new task object using the values in the input fields
     let newTask = {
         name: $('#nameIn').val(),
         description: $('#description').val(),
     }
+    //Request to send this newTask as data to the server
     $.ajax({
         type: 'POST',
         url: '/tasks',
         data: newTask,
     })
+        //receives the new dataset from the server
         .then(response => {
             console.log('Response from server.', response);
-            //TODO: add this function below
+            //reruns the getTasks function which also re-renders all the tasks to the DOM
             getTasks();
         })
+        //error if one occurs
         .catch(error => {
             console.log('Error with post', error);
             alert('Unable to add task at this time, try again later.');
         });
+    //finally clears inputs for next entry.
     clearInputs();
 }
 
+//function to render tasks to the DOM. Takes in the response (the tasks table) as an array
 function renderTasks(tasks){
+    //first empty the tasksDisplay section in the index file with jquery
     $('#tasksDisplay').empty();
+    //loop to move through the table in the database as an array
     for(let i = 0; i < tasks.length; i++) {
+        //appends in the following div with the data from the table at each row that was sent. Adds delete and complete buttons dynamically with the new icons.
         $('#tasksDisplay').append(`
             <div class="taskCard">
                 <p class="nameStyle">${tasks[i].name}</p>
@@ -70,6 +83,8 @@ function renderTasks(tasks){
                 </button>
             </div>
         `);
+        //if the task at each iteration of the loop is already completed when rendered, automatically apply the new class for both the card itself (but only the current one)
+        //and the button.
         if (tasks[i].isComplete === true){
             $('.taskCard').last().addClass('changeToComplete');
             $('.isComplete').last().addClass('buttonChange');
@@ -77,47 +92,56 @@ function renderTasks(tasks){
         }
     }
 }
-
+//function for the click handler for when the complete button is clicked on one of the tasks card
 function completeHandler(){
     console.log('Completing task');
+    //applies the class change to the parent of the button, the card itself
     $(this).parent().addClass('changeToComplete');
+    //calls the completeTask function with the data at that button click
     completeTask($(this).data("id"), "true");
 }
-
+//function to make put request to the server to change isComplete at the specified id.
 function completeTask(taskId, isComplete){
+    //requests the server for the change.
     $.ajax({
         method: 'PUT',
         url: `/tasks/isComplete/${taskId}`,
         data: {
+            //boolean to be used by the server 
             boolean: isComplete,
         }
     })
+        //reruns the getTasks function which also rerenders the data to the DOM, now in a new color because the isComplete for that task is now true.
         .then (function(response) {
             getTasks();
         })
+        //error if one occurs
         .catch(function (error) {
             alert('Error with deleting task', error);
     });
 }
-
+//function to handle delete at the specified id by the button click.
 function deleteHandler(){
+    //indicates the card that is to be deleted by its id in the database
     deleteTask($(this).data("id"));
 }
-
+//function to request the server for delete
 function deleteTask(taskId){
+    //sends request for delete with the url being the id of the item to be deleted 
     $.ajax({
         method: 'DELETE',
         url: `/tasks/${taskId}`,
     })
+    //if successful, calls the getTasks function which also re-renders the data to the DOM, now one task less
     .then(function(response){
         getTasks();
-    })
+    })//error if one occurs, alerts user
     .catch(function(error){
         console.log('Error with deleting task', error);
         alert('Error with deleting task, try again later.')
     })
 }
-
+//basic function to clear inputs 
 function clearInputs(){
     $('#nameIn').val('');
     $('#description').val('');
